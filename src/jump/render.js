@@ -1,6 +1,6 @@
 import { jumpSprites } from './assets.js';
 
-export function drawBobbieJump(context, state) {
+export function drawSnoetjesJump(context, state) {
   const { width, height } = state.view;
   context.clearRect(0, 0, width, height);
   drawSky(context, state);
@@ -17,7 +17,7 @@ export function drawBobbieJump(context, state) {
     }
   });
   drawParticles(context, state);
-  drawBobbie(context, state);
+  drawSnoetjes(context, state);
   drawPopups(context, state);
   context.restore();
   drawVignette(context, width, height);
@@ -178,9 +178,9 @@ function drawBone(context, state, x, y) {
   context.restore();
 }
 
-function drawBobbie(context, state) {
+function drawSnoetjes(context, state) {
   const { player } = state;
-  const image = jumpSprites.bobbie;
+  const image = jumpSprites.snoetjes;
   const airStretch = Math.min(0.09, Math.abs(player.vy) / 830 * 0.1);
   const scaleX = 1 + player.squash * 0.15 - airStretch;
   const scaleY = 1 - player.squash * 0.12 + airStretch;

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { createButtonSound, createLoopTone, createGameSound } from './audio.js';
-import { BobbieWings } from './game/BobbieWings.jsx';
-import { BobbieMatch } from './match/BobbieMatch.jsx';
-import { BobbieDefense } from './defense/BobbieDefense.jsx';
-import { BobbieJump } from './jump/BobbieJump.jsx';
+import { SnoetjesWings } from './game/SnoetjesWings.jsx';
+import { SnoetjesMatch } from './match/SnoetjesMatch.jsx';
+import { SnoetjesDefense } from './defense/SnoetjesDefense.jsx';
+import { SnoetjesJump } from './jump/SnoetjesJump.jsx';
 import { MainMenu } from './components/MainMenu.jsx';
 import { GameModeSelect } from './components/GameModeSelect.jsx';
 import { SettingsScreen } from './components/SettingsScreen.jsx';
@@ -69,28 +69,28 @@ export default function App() {
     setCurrentScreen('modes');
   }
 
-  function handleStartBobbieWings() {
+  function handleStartSnoetjesWings() {
     playClickSound();
     setStatusMessage('');
-    setCurrentScreen('bobbie-wings');
+    setCurrentScreen('snoetjes-wings');
   }
 
-  function handleStartBobbieMatch() {
+  function handleStartSnoetjesMatch() {
     playClickSound();
     setStatusMessage('');
-    setCurrentScreen('bobbie-match');
+    setCurrentScreen('snoetjes-match');
   }
 
-  function handleStartBobbieDefense() {
+  function handleStartSnoetjesDefense() {
     playClickSound();
     setStatusMessage('');
-    setCurrentScreen('bobbie-defense');
+    setCurrentScreen('snoetjes-defense');
   }
 
-  function handleStartBobbieJump() {
+  function handleStartSnoetjesJump() {
     playClickSound();
     setStatusMessage('');
-    setCurrentScreen('bobbie-jump');
+    setCurrentScreen('snoetjes-jump');
   }
 
   function handleAudioChange(key, enabled) {
@@ -104,9 +104,9 @@ export default function App() {
     }
   }
 
-  if (currentScreen === 'bobbie-wings') {
+  if (currentScreen === 'snoetjes-wings') {
     return (
-      <BobbieWings
+      <SnoetjesWings
         audioSettings={audioSettings}
         onBackToModes={handleOpenModes}
         onMainMenu={handleBackToMenu}
@@ -115,27 +115,27 @@ export default function App() {
     );
   }
 
-  if (currentScreen === 'bobbie-match') {
+  if (currentScreen === 'snoetjes-match') {
     return (
-      <BobbieMatch
+      <SnoetjesMatch
         onBackToModes={handleOpenModes}
         onMainMenu={handleBackToMenu}
       />
     );
   }
 
-  if (currentScreen === 'bobbie-defense') {
+  if (currentScreen === 'snoetjes-defense') {
     return (
-      <BobbieDefense
+      <SnoetjesDefense
         onBackToModes={handleOpenModes}
         onMainMenu={handleBackToMenu}
       />
     );
   }
 
-  if (currentScreen === 'bobbie-jump') {
+  if (currentScreen === 'snoetjes-jump') {
     return (
-      <BobbieJump
+      <SnoetjesJump
         onBackToModes={handleOpenModes}
         onMainMenu={handleBackToMenu}
       />
@@ -163,10 +163,10 @@ export default function App() {
         {currentScreen === 'modes' && (
           <GameModeSelect
             onBackToMenu={handleBackToMenu}
-            onStartBobbieWings={handleStartBobbieWings}
-            onStartBobbieMatch={handleStartBobbieMatch}
-            onStartBobbieDefense={handleStartBobbieDefense}
-            onStartBobbieJump={handleStartBobbieJump}
+            onStartSnoetjesWings={handleStartSnoetjesWings}
+            onStartSnoetjesMatch={handleStartSnoetjesMatch}
+            onStartSnoetjesDefense={handleStartSnoetjesDefense}
+            onStartSnoetjesJump={handleStartSnoetjesJump}
             onHoverButton={playHoverSound}
           />
         )}

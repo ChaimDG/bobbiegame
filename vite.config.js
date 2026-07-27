@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ command }) => ({
-  // GitHub Pages serves this project below /bobbiegame/, while local Vite stays at root.
+  // The existing GitHub Pages path follows the repository name; local Vite stays at root.
   base: command === 'build' ? '/bobbiegame/' : '/',
   plugins: [react()],
   server: {

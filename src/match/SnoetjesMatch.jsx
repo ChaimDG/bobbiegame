@@ -36,7 +36,7 @@ const specialEffectLifetime = {
   shuffle: 700,
 };
 
-export function BobbieMatch({ onBackToModes, onMainMenu }) {
+export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
   const [game, setGame] = useState(() => createMatchState());
   const [selected, setSelected] = useState(null);
   const [matchedTiles, setMatchedTiles] = useState([]);
@@ -322,14 +322,14 @@ export function BobbieMatch({ onBackToModes, onMainMenu }) {
         <span className="match-paw-bg match-paw-bg-two" />
         <span className="match-sun-glint" />
       </div>
-      <section className="match-game" aria-labelledby="bobbie-match-title">
+      <section className="match-game" aria-labelledby="snoetjes-match-title">
         <header className="match-header">
           <button className="back-button" type="button" onClick={onBackToModes}>
             Modes
           </button>
           <div className="match-title-wrap">
             <p className="match-kicker">Level 1</p>
-            <h1 id="bobbie-match-title">Bobbie Match</h1>
+            <h1 id="snoetjes-match-title">Snoetjes Match</h1>
           </div>
           <button className="back-button" type="button" onClick={restart}>
             Restart
@@ -372,7 +372,7 @@ export function BobbieMatch({ onBackToModes, onMainMenu }) {
         <div
           className={`match-board ${invalidTiles.length ? 'match-board-shake' : ''}`}
           style={{ '--board-size': boardSize }}
-          aria-label="Bobbie Match board"
+          aria-label="Snoetjes Match board"
         >
           {game.board.map((row, rowIndex) =>
             row.map((tile, colIndex) => {

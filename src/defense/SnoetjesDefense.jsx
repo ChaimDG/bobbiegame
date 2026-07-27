@@ -13,7 +13,7 @@ import { towerTypes, waves } from './level.js';
 import { drawDefense } from './render.js';
 import { defenseAssetUrls, preloadDefenseAssets } from './assets.js';
 
-export function BobbieDefense({ onBackToModes, onMainMenu }) {
+export function SnoetjesDefense({ onBackToModes, onMainMenu }) {
   const canvasRef = useRef(null);
   const stateRef = useRef(createDefenseState());
   const fieldRef = useRef({ width: 390, height: 620, time: 0 });
@@ -124,7 +124,7 @@ export function BobbieDefense({ onBackToModes, onMainMenu }) {
       <canvas
         ref={canvasRef}
         className="defense-canvas"
-        aria-label="Bobbie Defense speelveld"
+        aria-label="Snoetjes Defense speelveld"
         onPointerDown={handleCanvasPointer}
         onPointerMove={handleCanvasMove}
         onPointerLeave={handleCanvasLeave}

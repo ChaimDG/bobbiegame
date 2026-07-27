@@ -1,26 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import { GameButton } from '../components/GameButton.jsx';
-import { createBobbieWingsState, updateBobbieWings } from './engine/gameState.js';
+import { createSnoetjesWingsState, updateSnoetjesWings } from './engine/gameState.js';
 import { attachInput } from './engine/input.js';
-import { drawBobbieWings } from './rendering/renderBobbieWings.js';
+import { drawSnoetjesWings } from './rendering/renderSnoetjesWings.js';
 import { getBestDistance, saveBestDistance } from './systems/storage.js';
 import { wingsAssetUrls } from './wingsAssets.js';
 
 const fixedStep = 1 / 120;
 
-export function BobbieWings({ audioSettings, onBackToModes, onMainMenu, playGameSound }) {
+export function SnoetjesWings({ audioSettings, onBackToModes, onMainMenu, playGameSound }) {
   const canvasRef = useRef(null);
   const stateRef = useRef(null);
   const inputRef = useRef({ pressed: false, justPressed: false, justReleased: false });
   const rafRef = useRef(0);
-  const [snapshot, setSnapshot] = useState(() => makeSnapshot(createBobbieWingsState(getBestDistance())));
+  const [snapshot, setSnapshot] = useState(() => makeSnapshot(createSnoetjesWingsState(getBestDistance())));
   const [paused, setPaused] = useState(false);
   const [runKey, setRunKey] = useState(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    const state = createBobbieWingsState(getBestDistance());
+    const state = createSnoetjesWingsState(getBestDistance());
     let accumulator = 0;
     let previousTime = performance.now();
     let snapshotTimer = 0;
@@ -56,12 +56,12 @@ export function BobbieWings({ audioSettings, onBackToModes, onMainMenu, playGame
       if (!state.paused && state.status === 'playing') {
         accumulator += dt;
         while (accumulator >= fixedStep) {
-          updateBobbieWings(state, inputRef.current, fixedStep, playCue);
+          updateSnoetjesWings(state, inputRef.current, fixedStep, playCue);
           accumulator -= fixedStep;
         }
       }
 
-      drawBobbieWings(context, state);
+      drawSnoetjesWings(context, state);
       snapshotTimer += dt;
       if (snapshotTimer > 0.12 || state.status !== lastStatus) {
         snapshotTimer = 0;
@@ -110,7 +110,7 @@ export function BobbieWings({ audioSettings, onBackToModes, onMainMenu, playGame
       <canvas
         ref={canvasRef}
         className="wings-canvas"
-        aria-label="Bobbie Wings speelveld"
+        aria-label="Snoetjes Wings speelveld"
       />
       <GameHud snapshot={snapshot} paused={paused} onPause={handlePause} />
       {snapshot.status === 'game-over' && (
@@ -170,7 +170,7 @@ function HudMetric({ label, value, bone = false }) {
 function GameOverOverlay({ snapshot, onTryAgain, onBackToModes, onMainMenu }) {
   return (
     <div className="game-over-panel menu-enter">
-      <p className="game-over-kicker">Bobbie Wings</p>
+      <p className="game-over-kicker">Snoetjes Wings</p>
       <h1>Run Complete</h1>
       <dl>
         <div>

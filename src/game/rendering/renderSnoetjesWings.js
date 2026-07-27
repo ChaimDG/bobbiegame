@@ -1,10 +1,10 @@
-import bobbieDogUrl from '../../assets/bobbie-dog.png';
+import snoetjesDogUrl from '../../assets/snoetjes-dog.png';
 import { wingsSprites } from '../wingsAssets.js';
 
-const bobbieSprite = new Image();
-bobbieSprite.src = bobbieDogUrl;
+const snoetjesSprite = new Image();
+snoetjesSprite.src = snoetjesDogUrl;
 
-export function drawBobbieWings(context, state) {
+export function drawSnoetjesWings(context, state) {
   const { width, height } = state.view;
   const theme = state.terrain.getTheme(state.player.x);
   const shakeX = (Math.random() - 0.5) * state.effects.shake * 18;
@@ -22,7 +22,7 @@ export function drawBobbieWings(context, state) {
   drawCollectibles(context, state);
   drawSpeedLines(context, state);
   drawParticles(context, state);
-  drawBobbie(context, state);
+  drawSnoetjes(context, state);
   context.restore();
   drawVignette(context, width, height);
 }
@@ -327,7 +327,7 @@ function drawParticles(context, state) {
   }
 }
 
-function drawBobbie(context, state) {
+function drawSnoetjes(context, state) {
   const p = state.player;
   const drawY = p.visualY ?? p.y;
   const runCycle = Math.sin(state.time * Math.max(8, p.vx / 24));
@@ -347,11 +347,11 @@ function drawBobbie(context, state) {
     context.stroke();
   }
 
-  if (bobbieSprite.complete && bobbieSprite.naturalWidth > 0) {
-    const bob = getBobbieSpriteFrame(state);
-    context.drawImage(bobbieSprite, bob.x, bob.y, bob.width, bob.height);
+  if (snoetjesSprite.complete && snoetjesSprite.naturalWidth > 0) {
+    const bob = getSnoetjesSpriteFrame(state);
+    context.drawImage(snoetjesSprite, bob.x, bob.y, bob.width, bob.height);
     context.restore();
-    drawBobbieCallout(context, state, p.x, drawY);
+    drawSnoetjesCallout(context, state, p.x, drawY);
     return;
   }
 
@@ -411,10 +411,10 @@ function drawBobbie(context, state) {
   context.stroke();
 
   context.restore();
-  drawBobbieCallout(context, state, p.x, drawY);
+  drawSnoetjesCallout(context, state, p.x, drawY);
 }
 
-function drawBobbieCallout(context, state, x, y) {
+function drawSnoetjesCallout(context, state, x, y) {
   const p = state.player;
   if (p.perfectTimer <= 0 && p.stumbleTimer <= 0) {
     return;
@@ -437,7 +437,7 @@ function drawBobbieCallout(context, state, x, y) {
   context.restore();
 }
 
-function getBobbieSpriteFrame(state) {
+function getSnoetjesSpriteFrame(state) {
   const player = state.player;
   const airborneLift = player.grounded ? 0 : Math.sin(state.time * 9) * 2;
   const runBob = player.grounded ? Math.sin(state.time * Math.max(9, player.vx / 23)) * 2.5 : 0;

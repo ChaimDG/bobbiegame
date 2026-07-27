@@ -1,5 +1,5 @@
 import { GameButton } from './GameButton.jsx';
-import bobbieDogUrl from '../assets/bobbie-dog.png';
+import snoetjesDogUrl from '../assets/snoetjes-dog.png';
 import { wingsAssetUrls } from '../game/wingsAssets.js';
 
 export function MainMenu({
@@ -14,15 +14,15 @@ export function MainMenu({
       <div className="menu-character-stage" aria-hidden="true">
         <span className="menu-character-glow" />
         <span className="menu-character-grass" />
-        <img className="menu-bobbie" src={bobbieDogUrl} alt="" />
+        <img className="menu-snoetjes" src={snoetjesDogUrl} alt="" />
         <img className="menu-gold-bone" src={wingsAssetUrls.goldBone} alt="" />
         <span className="menu-spark menu-spark-one" />
         <span className="menu-spark menu-spark-two" />
       </div>
       <div className="menu-logo-wrap">
-        <span className="menu-logo-kicker">A Bobbie Adventure</span>
+        <span className="menu-logo-kicker">A Snoetjes Adventure</span>
         <h1 className="game-logo" id="main-menu-title">
-          <span>Bobbie</span>
+          <span>Snoetjes</span>
           <span>Game</span>
         </h1>
       </div>

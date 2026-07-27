@@ -1,5 +1,5 @@
 import { GameButton } from './GameButton.jsx';
-import bobbieDogUrl from '../assets/bobbie-dog.png';
+import snoetjesDogUrl from '../assets/snoetjes-dog.png';
 import { defenseAssetUrls } from '../defense/assets.js';
 import { wingsAssetUrls } from '../game/wingsAssets.js';
 import { matchAssetUrls } from '../match/matchAssets.js';
@@ -7,32 +7,32 @@ import { jumpAssetUrls } from '../jump/assets.js';
 
 const modes = [
   {
-    id: 'bobbie-wings',
-    name: 'Bobbie Wings',
+    id: 'snoetjes-wings',
+    name: 'Snoetjes Wings',
     description: 'Dive, glide and surf rolling hills with perfect timing.',
     category: 'Sky Run',
     available: true,
     illustration: 'wings',
   },
   {
-    id: 'bobbie-match',
-    name: 'Bobbie Match',
+    id: 'snoetjes-match',
+    name: 'Snoetjes Match',
     description: 'Swap treats, toys and paws to clear the goal.',
     category: 'Puzzle Picnic',
     available: true,
     illustration: 'match',
   },
   {
-    id: 'bobbie-defense',
-    name: 'Bobbie Defense',
+    id: 'snoetjes-defense',
+    name: 'Snoetjes Defense',
     description: 'Build doggy towers and stop toy troublemakers.',
     category: 'Park Defense',
     available: true,
     illustration: 'defense',
   },
   {
-    id: 'bobbie-jump',
-    name: 'Bobbie Jump',
+    id: 'snoetjes-jump',
+    name: 'Snoetjes Jump',
     description: 'Bounce up through the sky park and catch golden bones.',
     category: 'Sky Playground',
     available: true,
@@ -42,10 +42,10 @@ const modes = [
 
 export function GameModeSelect({
   onBackToMenu,
-  onStartBobbieWings,
-  onStartBobbieMatch,
-  onStartBobbieDefense,
-  onStartBobbieJump,
+  onStartSnoetjesWings,
+  onStartSnoetjesMatch,
+  onStartSnoetjesDefense,
+  onStartSnoetjesJump,
   onHoverButton,
 }) {
   return (
@@ -55,7 +55,7 @@ export function GameModeSelect({
           Back
         </button>
         <div className="mode-select-heading">
-          <span className="mode-select-kicker">Bobbie Game</span>
+          <span className="mode-select-kicker">Snoetjes Game</span>
           <h1 className="panel-title" id="mode-select-title">
             Choose a Game
           </h1>
@@ -77,10 +77,10 @@ export function GameModeSelect({
             {mode.available ? (
               <GameButton
                 onClick={getModeAction(mode.id, {
-                  onStartBobbieWings,
-                  onStartBobbieMatch,
-                  onStartBobbieDefense,
-                  onStartBobbieJump,
+                  onStartSnoetjesWings,
+                  onStartSnoetjesMatch,
+                  onStartSnoetjesDefense,
+                  onStartSnoetjesJump,
                 })}
                 onPointerEnter={onHoverButton}
                 size="mini"
@@ -107,7 +107,7 @@ function ModeIllustration({ type }) {
       aria-hidden="true"
     >
       <span className="mode-art-shine" />
-      {type === 'wings' && <img className="mode-wings-bobbie" src={bobbieDogUrl} alt="" />}
+      {type === 'wings' && <img className="mode-wings-snoetjes" src={snoetjesDogUrl} alt="" />}
       {type === 'match' && (
         <div className="mode-match-pieces" style={{ '--match-items-sprite': `url(${matchAssetUrls.items})` }}>
           <span className="mode-match-piece mode-match-piece-bone" />
@@ -124,7 +124,7 @@ function ModeIllustration({ type }) {
       {type === 'jump' && (
         <>
           <span className="mode-jump-platform" />
-          <img className="mode-jump-bobbie" src={bobbieDogUrl} alt="" />
+          <img className="mode-jump-snoetjes" src={snoetjesDogUrl} alt="" />
         </>
       )}
     </div>
@@ -145,14 +145,14 @@ function getModeBackground(type) {
 }
 
 function getModeAction(id, actions) {
-  if (id === 'bobbie-match') {
-    return actions.onStartBobbieMatch;
+  if (id === 'snoetjes-match') {
+    return actions.onStartSnoetjesMatch;
   }
-  if (id === 'bobbie-defense') {
-    return actions.onStartBobbieDefense;
+  if (id === 'snoetjes-defense') {
+    return actions.onStartSnoetjesDefense;
   }
-  if (id === 'bobbie-jump') {
-    return actions.onStartBobbieJump;
+  if (id === 'snoetjes-jump') {
+    return actions.onStartSnoetjesJump;
   }
-  return actions.onStartBobbieWings;
+  return actions.onStartSnoetjesWings;
 }

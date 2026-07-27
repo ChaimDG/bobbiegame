@@ -4,7 +4,7 @@ import { updatePhysics } from '../systems/physics.js';
 import { createTerrain } from '../systems/terrain.js';
 import { saveBestDistance } from '../systems/storage.js';
 
-export function createBobbieWingsState(bestDistance = 0) {
+export function createSnoetjesWingsState(bestDistance = 0) {
   const terrain = createTerrain(9241);
   const startX = 80;
   const startY = terrain.getY(startX) - 36;
@@ -59,7 +59,7 @@ export function createBobbieWingsState(bestDistance = 0) {
   };
 }
 
-export function updateBobbieWings(state, input, dt, playCue) {
+export function updateSnoetjesWings(state, input, dt, playCue) {
   state.time += dt;
   state.player.dive = input.pressed;
   state.distance = Math.max(0, (state.player.x - 80) / 10);
