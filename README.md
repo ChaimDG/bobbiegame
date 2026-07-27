@@ -22,7 +22,7 @@ Open daarna `http://localhost:5174/`. Op Windows kan ook `Start-Snoetjes-Game.cm
 
 Elke push naar `main` bouwt en publiceert de game via GitHub Pages. De productiepagina wordt bereikbaar op:
 
-`https://chaimdg.github.io/bobbiegame/`
+`https://chaimdg.github.io/snoetjes/`
 
 ## Projectstructuur
 
