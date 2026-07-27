@@ -1,5 +1,6 @@
 import { GameButton } from './GameButton.jsx';
 import snoetjesDogUrl from '../assets/snoetjes-dog.png';
+import snoetjesBrandLockupUrl from '../assets/snoetjes-brand-lockup.png';
 import { wingsAssetUrls } from '../game/wingsAssets.js';
 
 export function MainMenu({
@@ -21,10 +22,10 @@ export function MainMenu({
       </div>
       <div className="menu-logo-wrap">
         <span className="menu-logo-kicker">A Snoetjes Adventure</span>
-        <h1 className="game-logo" id="main-menu-title">
-          <span>Snoetjes</span>
-          <span>Game</span>
+        <h1 className="official-menu-logo" id="main-menu-title">
+          <img src={snoetjesBrandLockupUrl} alt="Snoetjes Game" />
         </h1>
+        <span className="official-menu-subtitle">Game</span>
       </div>
       <nav className="button-stack" aria-label="Hoofdmenu">
         <GameButton onClick={onNewGame} onPointerEnter={onHoverButton} tone="play">

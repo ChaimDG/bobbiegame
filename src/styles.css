@@ -289,6 +289,34 @@ select {
   justify-items: center;
 }
 
+.official-menu-logo {
+  width: min(100%, 390px);
+  margin: 0;
+  line-height: 0;
+  filter: drop-shadow(0 6px 0 rgba(255, 255, 255, 0.74)) drop-shadow(0 13px 18px rgba(23, 16, 111, 0.32));
+  animation: titleBob 3.2s ease-in-out infinite;
+}
+
+.official-menu-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.official-menu-subtitle {
+  margin-top: -9px;
+  color: #f7f6ff;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", ui-rounded, system-ui, sans-serif;
+  font-size: clamp(2.15rem, 9vw, 3.45rem);
+  font-weight: 950;
+  line-height: 0.88;
+  text-shadow:
+    0 3px 0 var(--brand-blue),
+    0 7px 0 var(--brand-blue-deep),
+    0 12px 18px rgba(23, 16, 111, 0.26);
+  -webkit-text-stroke: 2px #fffdf9;
+}
+
 .menu-logo-kicker {
   color: #fff4b4;
   font-size: clamp(0.68rem, 2.2vw, 0.82rem);
