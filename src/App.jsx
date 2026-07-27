@@ -3,6 +3,7 @@ import { createButtonSound, createLoopTone, createGameSound } from './audio.js';
 import { BobbieWings } from './game/BobbieWings.jsx';
 import { BobbieMatch } from './match/BobbieMatch.jsx';
 import { BobbieDefense } from './defense/BobbieDefense.jsx';
+import { BobbieJump } from './jump/BobbieJump.jsx';
 import { MainMenu } from './components/MainMenu.jsx';
 import { GameModeSelect } from './components/GameModeSelect.jsx';
 import { SettingsScreen } from './components/SettingsScreen.jsx';
@@ -83,6 +84,12 @@ export default function App() {
     setCurrentScreen('bobbie-defense');
   }
 
+  function handleStartBobbieJump() {
+    playClickSound();
+    setStatusMessage('');
+    setCurrentScreen('bobbie-jump');
+  }
+
   function handleAudioChange(key, enabled) {
     setAudioSettings((settings) => ({
       ...settings,
@@ -123,6 +130,15 @@ export default function App() {
     );
   }
 
+  if (currentScreen === 'bobbie-jump') {
+    return (
+      <BobbieJump
+        onBackToModes={handleOpenModes}
+        onMainMenu={handleBackToMenu}
+      />
+    );
+  }
+
   return (
     <main
       className={`game-shell${currentScreen === 'menu' ? ' game-shell-menu' : ''}`}
@@ -147,6 +163,7 @@ export default function App() {
             onStartBobbieWings={handleStartBobbieWings}
             onStartBobbieMatch={handleStartBobbieMatch}
             onStartBobbieDefense={handleStartBobbieDefense}
+            onStartBobbieJump={handleStartBobbieJump}
             onHoverButton={playHoverSound}
           />
         )}

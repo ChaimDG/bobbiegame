@@ -3,6 +3,7 @@ import bobbieDogUrl from '../assets/bobbie-dog.png';
 import { defenseAssetUrls } from '../defense/assets.js';
 import { wingsAssetUrls } from '../game/wingsAssets.js';
 import { matchAssetUrls } from '../match/matchAssets.js';
+import { jumpAssetUrls } from '../jump/assets.js';
 
 const modes = [
   {
@@ -29,6 +30,14 @@ const modes = [
     available: true,
     illustration: 'defense',
   },
+  {
+    id: 'bobbie-jump',
+    name: 'Bobbie Jump',
+    description: 'Bounce up through the sky park and catch golden bones.',
+    category: 'Sky Playground',
+    available: true,
+    illustration: 'jump',
+  },
 ];
 
 export function GameModeSelect({
@@ -36,6 +45,7 @@ export function GameModeSelect({
   onStartBobbieWings,
   onStartBobbieMatch,
   onStartBobbieDefense,
+  onStartBobbieJump,
   onHoverButton,
 }) {
   return (
@@ -70,6 +80,7 @@ export function GameModeSelect({
                   onStartBobbieWings,
                   onStartBobbieMatch,
                   onStartBobbieDefense,
+                  onStartBobbieJump,
                 })}
                 onPointerEnter={onHoverButton}
                 size="mini"
@@ -110,6 +121,12 @@ function ModeIllustration({ type }) {
           <img className="mode-defense-enemy" src={defenseAssetUrls.troublemaker} alt="" />
         </>
       )}
+      {type === 'jump' && (
+        <>
+          <span className="mode-jump-platform" />
+          <img className="mode-jump-bobbie" src={bobbieDogUrl} alt="" />
+        </>
+      )}
     </div>
   );
 }
@@ -121,6 +138,9 @@ function getModeBackground(type) {
   if (type === 'defense') {
     return defenseAssetUrls.arena;
   }
+  if (type === 'jump') {
+    return jumpAssetUrls.skyPark;
+  }
   return wingsAssetUrls.wingsValley;
 }
 
@@ -130,6 +150,9 @@ function getModeAction(id, actions) {
   }
   if (id === 'bobbie-defense') {
     return actions.onStartBobbieDefense;
+  }
+  if (id === 'bobbie-jump') {
+    return actions.onStartBobbieJump;
   }
   return actions.onStartBobbieWings;
 }
