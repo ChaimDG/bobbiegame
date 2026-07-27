@@ -545,6 +545,280 @@ select {
     0 22px 28px rgba(70, 35, 15, 0.24);
 }
 
+/* Premium settings and credits screens use their own illustrated dog-world scenes. */
+.game-shell-settings,
+.game-shell-credits {
+  isolation: isolate;
+  background-position: center;
+  background-size: cover;
+}
+
+.game-shell-settings {
+  background-color: #f7cc71;
+  background-image:
+    linear-gradient(180deg, rgba(71, 89, 47, 0.09), transparent 42%, rgba(35, 102, 43, 0.2)),
+    var(--settings-garden);
+}
+
+.game-shell-credits {
+  background-color: #f6b666;
+  background-image:
+    linear-gradient(180deg, rgba(126, 69, 33, 0.12), transparent 37%, rgba(56, 107, 42, 0.2)),
+    var(--credits-meadow);
+}
+
+.game-shell-settings::before,
+.game-shell-settings::after,
+.game-shell-credits::before,
+.game-shell-credits::after {
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 42%;
+  border-radius: 0;
+  background: linear-gradient(180deg, transparent, rgba(35, 89, 41, 0.42));
+  transform: none;
+}
+
+.game-shell-settings::after,
+.game-shell-credits::after {
+  display: none;
+}
+
+.game-shell-settings .sky-layer-back,
+.game-shell-credits .sky-layer-back {
+  z-index: 1;
+  opacity: 0.18;
+  background-image:
+    radial-gradient(circle, rgba(255, 253, 195, 0.86) 0 3px, transparent 4px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.72) 0 5px, transparent 6px);
+  animation-duration: 21s;
+}
+
+.game-shell-settings .sky-layer-front,
+.game-shell-credits .sky-layer-front {
+  z-index: 1;
+  opacity: 0.08;
+}
+
+.game-shell-settings .decor-layer,
+.game-shell-credits .decor-layer {
+  z-index: 2;
+  opacity: 0.34;
+}
+
+.settings-content-premium,
+.credits-content {
+  position: relative;
+  min-height: min(650px, calc(100svh - 54px));
+  align-content: center;
+  gap: 18px;
+}
+
+.settings-heading,
+.credits-heading {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  text-align: center;
+}
+
+.settings-heading > span,
+.credits-heading > span {
+  color: #fff4b6;
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-shadow: 0 2px 0 #62351d;
+  text-transform: uppercase;
+}
+
+.settings-heading .panel-title,
+.credits-heading .panel-title {
+  font-size: clamp(3.2rem, 14vw, 5rem);
+  line-height: 0.9;
+  text-shadow:
+    0 4px 0 #6a3218,
+    0 8px 0 #3d1d0f,
+    0 15px 18px rgba(73, 40, 18, 0.32);
+}
+
+.settings-card,
+.credits-card {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(100%, 334px);
+  border: 5px solid #4b2a18;
+  border-radius: 25px;
+  padding: 17px 14px 14px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.78), transparent 36%),
+    linear-gradient(145deg, rgba(255, 250, 220, 0.96), rgba(248, 211, 123, 0.96));
+  box-shadow:
+    inset 0 -7px 0 rgba(125, 66, 26, 0.14),
+    0 8px 0 #3d2114,
+    0 20px 28px rgba(59, 39, 20, 0.25);
+}
+
+.settings-card-kicker,
+.credits-card-kicker {
+  margin: 0 0 10px;
+  color: #a66a32;
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.settings-content-premium .sound-toggle {
+  width: 100%;
+  min-height: 65px;
+  border: 3px solid #4b2a18;
+  border-radius: 17px;
+  padding: 0 13px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.56), transparent 42%),
+    linear-gradient(145deg, #fffbe5, #f5d78f);
+  box-shadow: inset 0 -5px 0 rgba(111, 62, 27, 0.12), 0 3px 0 rgba(77, 42, 21, 0.25);
+  color: #674020;
+  font-size: 1.2rem;
+}
+
+.settings-content-premium .sound-toggle + .sound-toggle {
+  margin-top: 8px;
+}
+
+.settings-content-premium .toggle-track {
+  width: 67px;
+  height: 35px;
+  border-color: #4b2a18;
+}
+
+.settings-content-premium .toggle-thumb {
+  width: 23px;
+  height: 23px;
+  border-color: #4b2a18;
+}
+
+.settings-content-premium .sound-toggle input:checked + .toggle-track .toggle-thumb {
+  transform: translateX(31px);
+}
+
+.settings-content-premium > .game-button,
+.credits-content > .game-button {
+  position: relative;
+  z-index: 2;
+  min-height: 60px;
+  border-color: #4b2a18;
+  background:
+    linear-gradient(rgba(255,255,255,0.58), transparent 41%),
+    linear-gradient(145deg, #8bdff1, #3d9fca);
+  box-shadow:
+    inset 0 3px 0 rgba(255,255,255,0.56),
+    inset 0 -6px 0 rgba(32, 101, 136, 0.2),
+    0 6px 0 #3d2114,
+    0 12px 17px rgba(59, 39, 20, 0.23);
+}
+
+.credits-content > .game-button {
+  background:
+    linear-gradient(rgba(255,255,255,0.58), transparent 41%),
+    linear-gradient(145deg, #ffbd78, #ec7450);
+}
+
+.credits-bobbie-stage {
+  position: absolute;
+  z-index: 1;
+  right: -31%;
+  bottom: -9%;
+  width: min(94vw, 430px);
+  aspect-ratio: 1 / 0.8;
+  pointer-events: none;
+}
+
+.credits-bobbie-glow {
+  position: absolute;
+  right: 11%;
+  bottom: 13%;
+  width: 62%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 247, 173, 0.76), rgba(255, 217, 108, 0.22) 43%, transparent 70%);
+  animation: menuGlow 3.6s ease-in-out infinite;
+}
+
+.credits-bobbie {
+  position: absolute;
+  right: 10%;
+  bottom: -2%;
+  width: 66%;
+  filter: drop-shadow(0 10px 3px rgba(50, 30, 15, 0.34));
+  transform: rotate(-5deg);
+  transform-origin: bottom center;
+  animation: menuBobbieIdle 3.4s ease-in-out infinite;
+}
+
+.credits-bone-mark {
+  position: absolute;
+  z-index: 2;
+  width: 28px;
+  height: 12px;
+  border: 3px solid #5a311c;
+  border-radius: 999px;
+  background: #ffdf60;
+  box-shadow: -9px -4px 0 -3px #ffdf60, -9px -4px 0 -1px #5a311c, 9px 4px 0 -3px #ffdf60, 9px 4px 0 -1px #5a311c;
+  animation: menuBoneFloat 2.8s ease-in-out infinite;
+}
+
+.credits-bone-mark-one {
+  top: 23%;
+  right: 19%;
+  transform: rotate(-18deg);
+}
+
+.credits-bone-mark-two {
+  top: 46%;
+  right: 5%;
+  transform: rotate(28deg);
+  animation-delay: 650ms;
+}
+
+.credits-card dl {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+}
+
+.credits-card dl div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  border: 2px solid rgba(75, 42, 24, 0.36);
+  border-radius: 12px;
+  padding: 8px 9px;
+  background: rgba(255, 252, 226, 0.62);
+}
+
+.credits-card dt {
+  color: #96602f;
+  font-size: 0.67rem;
+  font-weight: 900;
+}
+
+.credits-card dd {
+  margin: 0;
+  color: #60391d;
+  font-size: 0.8rem;
+  font-weight: 950;
+  text-align: right;
+}
+
 .mode-select {
   position: relative;
   display: grid;

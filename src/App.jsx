@@ -7,6 +7,8 @@ import { BobbieJump } from './jump/BobbieJump.jsx';
 import { MainMenu } from './components/MainMenu.jsx';
 import { GameModeSelect } from './components/GameModeSelect.jsx';
 import { SettingsScreen } from './components/SettingsScreen.jsx';
+import { CreditsScreen } from './components/CreditsScreen.jsx';
+import { screenAssetUrls } from './components/screenAssets.js';
 import { wingsAssetUrls } from './game/wingsAssets.js';
 
 const buttonSound = createButtonSound();
@@ -45,7 +47,8 @@ export default function App() {
 
   function handleCredits() {
     playClickSound();
-    setStatusMessage('Credits komen later.');
+    setStatusMessage('');
+    setCurrentScreen('credits');
   }
 
   function handleOpenSettings() {
@@ -141,8 +144,8 @@ export default function App() {
 
   return (
     <main
-      className={`game-shell${currentScreen === 'menu' ? ' game-shell-menu' : ''}`}
-      style={currentScreen === 'menu' ? { '--menu-valley': `url(${wingsAssetUrls.wingsValley})` } : undefined}
+      className={`game-shell${getScreenShellClass(currentScreen)}`}
+      style={getScreenBackground(currentScreen)}
     >
       <div className="sky-layer sky-layer-back" aria-hidden="true" />
       <div className="sky-layer sky-layer-front" aria-hidden="true" />
@@ -175,10 +178,42 @@ export default function App() {
             onHoverButton={playHoverSound}
           />
         )}
+        {currentScreen === 'credits' && (
+          <CreditsScreen
+            onBackToMenu={handleBackToMenu}
+            onHoverButton={playHoverSound}
+          />
+        )}
       </section>
       <p className="version-label">v0.1</p>
     </main>
   );
+}
+
+function getScreenShellClass(screen) {
+  if (screen === 'menu') {
+    return ' game-shell-menu';
+  }
+  if (screen === 'settings') {
+    return ' game-shell-settings';
+  }
+  if (screen === 'credits') {
+    return ' game-shell-credits';
+  }
+  return '';
+}
+
+function getScreenBackground(screen) {
+  if (screen === 'menu') {
+    return { '--menu-valley': `url(${wingsAssetUrls.wingsValley})` };
+  }
+  if (screen === 'settings') {
+    return { '--settings-garden': `url(${screenAssetUrls.optionsGarden})` };
+  }
+  if (screen === 'credits') {
+    return { '--credits-meadow': `url(${screenAssetUrls.creditsMeadow})` };
+  }
+  return undefined;
 }
 
 function DogDecorations() {
