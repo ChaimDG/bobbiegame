@@ -16,6 +16,7 @@ export function SnoetjesWings({ audioSettings, onBackToModes, onMainMenu, playGa
   const [snapshot, setSnapshot] = useState(() => makeSnapshot(createSnoetjesWingsState(getBestDistance())));
   const [paused, setPaused] = useState(false);
   const [runKey, setRunKey] = useState(0);
+  const lastPauseTouchRef = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -105,6 +106,22 @@ export function SnoetjesWings({ audioSettings, onBackToModes, onMainMenu, playGa
     setRunKey((key) => key + 1);
   }
 
+  function handlePausePointerUp(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    lastPauseTouchRef.current = performance.now();
+    handlePause();
+  }
+
+  function handlePauseClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (performance.now() - lastPauseTouchRef.current < 350) {
+      return;
+    }
+    handlePause();
+  }
+
   return (
     <main className={`wings-shell ${snapshot.shake ? 'screen-shake' : ''}`}>
       <canvas
@@ -112,7 +129,12 @@ export function SnoetjesWings({ audioSettings, onBackToModes, onMainMenu, playGa
         className="wings-canvas"
         aria-label="Snoetjes Wings speelveld"
       />
-      <GameHud snapshot={snapshot} paused={paused} onPause={handlePause} />
+      <GameHud
+        snapshot={snapshot}
+        paused={paused}
+        onPauseClick={handlePauseClick}
+        onPausePointerUp={handlePausePointerUp}
+      />
       {snapshot.status === 'game-over' && (
         <GameOverOverlay
           snapshot={snapshot}
@@ -136,7 +158,7 @@ export function SnoetjesWings({ audioSettings, onBackToModes, onMainMenu, playGa
   );
 }
 
-function GameHud({ snapshot, paused, onPause }) {
+function GameHud({ snapshot, paused, onPauseClick, onPausePointerUp }) {
   return (
     <div className="game-hud">
       <div className="wings-hud-stats" style={{ '--wings-bone-icon': `url(${wingsAssetUrls.goldBone})` }}>
@@ -148,11 +170,13 @@ function GameHud({ snapshot, paused, onPause }) {
       <button
         className="pause-button"
         type="button"
-        onClick={onPause}
+        onPointerDown={(event) => event.stopPropagation()}
+        onPointerUp={onPausePointerUp}
+        onClick={onPauseClick}
         aria-label={paused ? 'Resume game' : 'Pause game'}
         title={paused ? 'Resume game' : 'Pause game'}
       >
-        <span aria-hidden="true">{paused ? '▶' : 'Ⅱ'}</span>
+        <span aria-hidden="true">{paused ? '>' : '||'}</span>
       </button>
     </div>
   );

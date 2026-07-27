@@ -7,12 +7,12 @@ import { jumpAssetUrls } from '../jump/assets.js';
 
 const modes = [
   {
-    id: 'snoetjes-wings',
-    name: 'Snoetjes Wings',
-    description: 'Dive, glide and surf rolling hills with perfect timing.',
-    category: 'Sky Run',
+    id: 'snoetjes-jump',
+    name: 'Snoetjes Jump',
+    description: 'Bounce up through the sky park and catch golden bones.',
+    category: 'Sky Playground',
     available: true,
-    illustration: 'wings',
+    illustration: 'jump',
   },
   {
     id: 'snoetjes-match',
@@ -31,12 +31,12 @@ const modes = [
     illustration: 'defense',
   },
   {
-    id: 'snoetjes-jump',
-    name: 'Snoetjes Jump',
-    description: 'Bounce up through the sky park and catch golden bones.',
-    category: 'Sky Playground',
+    id: 'snoetjes-wings',
+    name: 'Snoetjes Wings',
+    description: 'Dive, glide and surf rolling hills with perfect timing.',
+    category: 'Sky Run',
     available: true,
-    illustration: 'jump',
+    illustration: 'wings',
   },
 ];
 

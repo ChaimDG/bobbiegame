@@ -12,8 +12,6 @@ import {
   getRocketPositions,
   getTileKey,
   hasPossibleMove,
-  levelGoal,
-  levelMoves,
   mergePowerUps,
   removePositions,
   removeMatches,
@@ -55,8 +53,8 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
     preloadMatchAssets();
   }, []);
 
-  function restart() {
-    setGame(createMatchState());
+  function resetLevel(level = game.level) {
+    setGame(createMatchState(level));
     setSelected(null);
     setMatchedTiles([]);
     setInvalidTiles([]);
@@ -64,6 +62,14 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
     setSpecialEffects([]);
     setIsResolving(false);
     setActivePowerUp(null);
+  }
+
+  function restart() {
+    resetLevel();
+  }
+
+  function nextLevel() {
+    resetLevel(game.level + 1);
   }
 
   async function trySwap(from, to) {
@@ -147,7 +153,7 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
       await wait(220);
     }
 
-    const status = score >= levelGoal ? 'won' : movesLeft <= 0 ? 'lost' : 'playing';
+    const status = score >= game.goal ? 'won' : movesLeft <= 0 ? 'lost' : 'playing';
     setGame((current) => ({
       ...current,
       board,
@@ -311,7 +317,7 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
     }, 800);
   }
 
-  const progress = Math.min(100, (game.score / levelGoal) * 100);
+  const progress = Math.min(100, (game.score / game.goal) * 100);
 
   return (
     <main className="match-shell" style={{ '--match-garden': `url(${matchAssetUrls.garden})` }}>
@@ -328,7 +334,7 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
             Modes
           </button>
           <div className="match-title-wrap">
-            <p className="match-kicker">Level 1</p>
+            <p className="match-kicker">Level {game.level}</p>
             <h1 id="snoetjes-match-title">Snoetjes Match</h1>
           </div>
           <button className="back-button" type="button" onClick={restart}>
@@ -338,8 +344,8 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
 
         <div className="match-stats" aria-label="Level status">
           <Stat label="Score" value={game.score} />
-          <Stat label="Goal" value={levelGoal} />
-          <Stat label="Moves" value={`${game.movesLeft}/${levelMoves}`} />
+          <Stat label="Goal" value={game.goal} />
+          <Stat label="Moves" value={`${game.movesLeft}/${game.moves}`} />
         </div>
 
         <div className="match-progress" aria-label="Goal progress">
@@ -428,14 +434,16 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
           <p>
             {game.status === 'won'
               ? `You scored ${game.score} points.`
-              : `You reached ${game.score} of ${levelGoal} points.`}
+              : `You reached ${game.score} of ${game.goal} points.`}
           </p>
           <GameButton onClick={restart} size="small">
             Try Again
           </GameButton>
-          <GameButton onClick={restart} size="small">
-            Next Level
-          </GameButton>
+          {game.status === 'won' && (
+            <GameButton onClick={nextLevel} size="small">
+              Next Level
+            </GameButton>
+          )}
           <GameButton onClick={onMainMenu} size="small">
             Main Menu
           </GameButton>

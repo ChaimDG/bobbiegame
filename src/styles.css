@@ -4698,6 +4698,40 @@ select {
   -webkit-text-stroke-color: #fffdf9;
 }
 
+/* Keep the full mobile game surfaces and their controls reliably centered. */
+@media (max-width: 560px) {
+  .wings-shell,
+  .defense-shell {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .match-shell {
+    align-items: center;
+    justify-items: center;
+  }
+
+  .match-game,
+  .defense-hud,
+  .defense-canvas,
+  .defense-mission,
+  .tower-bar {
+    justify-self: center;
+  }
+
+  .game-hud {
+    pointer-events: none;
+  }
+
+  .game-hud .pause-button {
+    position: relative;
+    z-index: 7;
+    pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 .mode-jump-platform {
   border-color: var(--brand-blue-deep);
   background: linear-gradient(#fffefa, #c6cdf9 46%, #6474dc);
