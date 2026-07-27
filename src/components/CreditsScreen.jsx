@@ -16,20 +16,9 @@ export function CreditsScreen({ onBackToMenu, onHoverButton }) {
       </header>
       <section className="credits-card" aria-label="Game credits">
         <p className="credits-card-kicker">Made with care</p>
-        <dl>
-          <div>
-            <dt>Creative direction</dt>
-            <dd>ChaimDG</dd>
-          </div>
-          <div>
-            <dt>Design &amp; development</dt>
-            <dd>Bobbie Game</dd>
-          </div>
-          <div>
-            <dt>Official playtester</dt>
-            <dd>Bobbie</dd>
-          </div>
-        </dl>
+        <p className="credits-message">
+          Dit spel is gemaakt door Chaim de Gelder, mede mogelijk gemaakt door Codex en een YouTube-tutorial over vibe coding.
+        </p>
       </section>
       <GameButton onClick={onBackToMenu} onPointerEnter={onHoverButton} size="small" tone="credits">
         Back to Menu
