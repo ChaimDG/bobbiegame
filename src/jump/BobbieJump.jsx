@@ -138,7 +138,13 @@ export function BobbieJump({ onBackToModes, onMainMenu }) {
   }
 
   return (
-    <main className="jump-shell" style={{ '--jump-sky': `url(${jumpAssetUrls.skyPark})` }}>
+    <main
+      className="jump-shell"
+      style={{
+        '--jump-sky': `url(${jumpAssetUrls.skyPark})`,
+        '--jump-bone-icon': `url(${jumpAssetUrls.goldBone})`,
+      }}
+    >
       <canvas
         ref={canvasRef}
         className="jump-canvas"
@@ -169,7 +175,7 @@ export function BobbieJump({ onBackToModes, onMainMenu }) {
         <ControlButton direction="right" active={controls.right} onDirection={setDirection}>Right</ControlButton>
       </div>
       {paused && snapshot.status === 'playing' && (
-        <div className="jump-overlay jump-overlay-pause menu-enter">
+        <div className="jump-overlay jump-overlay-pause jump-overlay-enter">
           <p>Bobbie Jump</p>
           <h1>Take a breath</h1>
           <GameButton size="small" onClick={handlePause}>Resume</GameButton>
@@ -215,7 +221,7 @@ function ControlButton({ direction, active, onDirection, children }) {
 
 function JumpResult({ snapshot, onTryAgain, onBackToModes, onMainMenu }) {
   return (
-    <div className="jump-overlay jump-result menu-enter">
+    <div className="jump-overlay jump-result jump-overlay-enter">
       <p>Sky run complete</p>
       <h1>Nice bounce!</h1>
       <dl>

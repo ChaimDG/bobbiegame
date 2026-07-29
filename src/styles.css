@@ -4182,14 +4182,12 @@ select {
 
 .jump-metric-bone i {
   display: inline-block;
-  width: 14px;
-  height: 8px;
-  margin-right: 2px;
-  border: 2px solid #6a4120;
-  border-radius: 7px;
-  vertical-align: 1px;
-  background: #ffdf5d;
-  box-shadow: -5px -2px 0 -1px #ffdf5d, -5px -2px 0 1px #6a4120, 5px 2px 0 -1px #ffdf5d, 5px 2px 0 1px #6a4120;
+  width: 23px;
+  height: 20px;
+  margin: -5px 1px -6px -3px;
+  vertical-align: middle;
+  background: var(--jump-bone-icon) center / contain no-repeat;
+  filter: drop-shadow(0 2px 1px rgba(75, 42, 24, 0.28));
 }
 
 .jump-tip {
@@ -4307,6 +4305,10 @@ select {
   place-items: center;
 }
 
+.jump-overlay-enter {
+  animation: jumpOverlayEnter 460ms cubic-bezier(0.2, 1.32, 0.32, 1) both;
+}
+
 .jump-result dl {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -4342,6 +4344,18 @@ select {
 .jump-result-actions .game-button:last-child {
   grid-column: 1 / -1;
   justify-self: center;
+}
+
+@keyframes jumpOverlayEnter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 18px)) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 .mode-jump-bobbie {

@@ -153,9 +153,27 @@ function drawTrampoline(context, width) {
 
 function drawBone(context, state, x, y) {
   const bob = Math.sin(state.time * 4.2 + x) * 4;
+  const pulse = 1 + Math.sin(state.time * 3.3 + x) * 0.045;
+  const image = jumpSprites.goldBone;
   context.save();
   context.translate(x, y + bob);
   context.rotate(Math.sin(state.time * 1.8 + x) * 0.09);
+  context.scale(pulse, pulse);
+
+  if (image.complete && image.naturalWidth > 0) {
+    const size = 48;
+    context.filter = 'drop-shadow(0 4px 2px rgba(79, 43, 18, 0.38))';
+    context.drawImage(image, -size * 0.5, -size * 0.5, size, size);
+    context.filter = 'none';
+    context.restore();
+    return;
+  }
+
+  drawFallbackBone(context);
+  context.restore();
+}
+
+function drawFallbackBone(context) {
   context.shadowColor = 'rgba(95, 56, 20, 0.32)';
   context.shadowBlur = 7;
   context.shadowOffsetY = 4;
@@ -175,7 +193,6 @@ function drawBone(context, state, x, y) {
   context.beginPath();
   context.ellipse(-3, -4, 7, 2.2, -0.1, 0, Math.PI * 2);
   context.fill();
-  context.restore();
 }
 
 function drawBobbie(context, state) {
