@@ -1,31 +1,16 @@
 import { itemTypeIds } from './matchItems.js';
 
 export const boardSize = 8;
-const initialLevelGoal = 1500;
-const initialLevelMoves = 25;
+export const levelGoal = 1500;
+export const levelMoves = 25;
 
 let nextTileId = 1;
 
-export function getMatchLevelConfig(level) {
-  const number = Math.max(1, Math.floor(level));
-
-  return {
-    number,
-    goal: initialLevelGoal + (number - 1) * 750,
-    moves: initialLevelMoves,
-  };
-}
-
-export function createMatchState(level = 1) {
-  const { number, goal, moves } = getMatchLevelConfig(level);
-
+export function createMatchState() {
   return {
     board: createPlayableBoard(),
-    level: number,
-    goal,
-    moves,
     score: 0,
-    movesLeft: moves,
+    movesLeft: levelMoves,
     status: 'playing',
     message: 'Make a match to start!',
     combo: 0,

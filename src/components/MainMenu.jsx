@@ -1,6 +1,5 @@
 import { GameButton } from './GameButton.jsx';
-import snoetjesDogUrl from '../assets/snoetjes-dog.png';
-import snoetjesBrandLockupUrl from '../assets/snoetjes-brand-lockup.png';
+import bobbieDogUrl from '../assets/bobbie-dog.png';
 import { wingsAssetUrls } from '../game/wingsAssets.js';
 
 export function MainMenu({
@@ -15,17 +14,17 @@ export function MainMenu({
       <div className="menu-character-stage" aria-hidden="true">
         <span className="menu-character-glow" />
         <span className="menu-character-grass" />
-        <img className="menu-snoetjes" src={snoetjesDogUrl} alt="" />
+        <img className="menu-bobbie" src={bobbieDogUrl} alt="" />
         <img className="menu-gold-bone" src={wingsAssetUrls.goldBone} alt="" />
         <span className="menu-spark menu-spark-one" />
         <span className="menu-spark menu-spark-two" />
       </div>
       <div className="menu-logo-wrap">
-        <span className="menu-logo-kicker">A Snoetjes Adventure</span>
-        <h1 className="official-menu-logo" id="main-menu-title">
-          <img src={snoetjesBrandLockupUrl} alt="Snoetjes Game" />
+        <span className="menu-logo-kicker">A Bobbie Adventure</span>
+        <h1 className="game-logo" id="main-menu-title">
+          <span>Bobbie</span>
+          <span>Game</span>
         </h1>
-        <span className="official-menu-subtitle">Game</span>
       </div>
       <nav className="button-stack" aria-label="Hoofdmenu">
         <GameButton onClick={onNewGame} onPointerEnter={onHoverButton} tone="play">

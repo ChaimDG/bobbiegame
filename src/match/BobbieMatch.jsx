@@ -12,6 +12,8 @@ import {
   getRocketPositions,
   getTileKey,
   hasPossibleMove,
+  levelGoal,
+  levelMoves,
   mergePowerUps,
   removePositions,
   removeMatches,
@@ -34,7 +36,7 @@ const specialEffectLifetime = {
   shuffle: 700,
 };
 
-export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
+export function BobbieMatch({ onBackToModes, onMainMenu }) {
   const [game, setGame] = useState(() => createMatchState());
   const [selected, setSelected] = useState(null);
   const [matchedTiles, setMatchedTiles] = useState([]);
@@ -53,8 +55,8 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
     preloadMatchAssets();
   }, []);
 
-  function resetLevel(level = game.level) {
-    setGame(createMatchState(level));
+  function restart() {
+    setGame(createMatchState());
     setSelected(null);
     setMatchedTiles([]);
     setInvalidTiles([]);
@@ -62,14 +64,6 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
     setSpecialEffects([]);
     setIsResolving(false);
     setActivePowerUp(null);
-  }
-
-  function restart() {
-    resetLevel();
-  }
-
-  function nextLevel() {
-    resetLevel(game.level + 1);
   }
 
   async function trySwap(from, to) {
@@ -153,7 +147,7 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
       await wait(220);
     }
 
-    const status = score >= game.goal ? 'won' : movesLeft <= 0 ? 'lost' : 'playing';
+    const status = score >= levelGoal ? 'won' : movesLeft <= 0 ? 'lost' : 'playing';
     setGame((current) => ({
       ...current,
       board,
@@ -317,7 +311,7 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
     }, 800);
   }
 
-  const progress = Math.min(100, (game.score / game.goal) * 100);
+  const progress = Math.min(100, (game.score / levelGoal) * 100);
 
   return (
     <main className="match-shell" style={{ '--match-garden': `url(${matchAssetUrls.garden})` }}>
@@ -328,14 +322,14 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
         <span className="match-paw-bg match-paw-bg-two" />
         <span className="match-sun-glint" />
       </div>
-      <section className="match-game" aria-labelledby="snoetjes-match-title">
+      <section className="match-game" aria-labelledby="bobbie-match-title">
         <header className="match-header">
           <button className="back-button" type="button" onClick={onBackToModes}>
             Modes
           </button>
           <div className="match-title-wrap">
-            <p className="match-kicker">Level {game.level}</p>
-            <h1 id="snoetjes-match-title">Snoetjes Match</h1>
+            <p className="match-kicker">Level 1</p>
+            <h1 id="bobbie-match-title">Bobbie Match</h1>
           </div>
           <button className="back-button" type="button" onClick={restart}>
             Restart
@@ -344,8 +338,8 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
 
         <div className="match-stats" aria-label="Level status">
           <Stat label="Score" value={game.score} />
-          <Stat label="Goal" value={game.goal} />
-          <Stat label="Moves" value={`${game.movesLeft}/${game.moves}`} />
+          <Stat label="Goal" value={levelGoal} />
+          <Stat label="Moves" value={`${game.movesLeft}/${levelMoves}`} />
         </div>
 
         <div className="match-progress" aria-label="Goal progress">
@@ -378,7 +372,7 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
         <div
           className={`match-board ${invalidTiles.length ? 'match-board-shake' : ''}`}
           style={{ '--board-size': boardSize }}
-          aria-label="Snoetjes Match board"
+          aria-label="Bobbie Match board"
         >
           {game.board.map((row, rowIndex) =>
             row.map((tile, colIndex) => {
@@ -434,16 +428,14 @@ export function SnoetjesMatch({ onBackToModes, onMainMenu }) {
           <p>
             {game.status === 'won'
               ? `You scored ${game.score} points.`
-              : `You reached ${game.score} of ${game.goal} points.`}
+              : `You reached ${game.score} of ${levelGoal} points.`}
           </p>
           <GameButton onClick={restart} size="small">
             Try Again
           </GameButton>
-          {game.status === 'won' && (
-            <GameButton onClick={nextLevel} size="small">
-              Next Level
-            </GameButton>
-          )}
+          <GameButton onClick={restart} size="small">
+            Next Level
+          </GameButton>
           <GameButton onClick={onMainMenu} size="small">
             Main Menu
           </GameButton>

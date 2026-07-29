@@ -1,27 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import { GameButton } from '../components/GameButton.jsx';
-import { createSnoetjesWingsState, updateSnoetjesWings } from './engine/gameState.js';
+import { createBobbieWingsState, updateBobbieWings } from './engine/gameState.js';
 import { attachInput } from './engine/input.js';
-import { drawSnoetjesWings } from './rendering/renderSnoetjesWings.js';
+import { drawBobbieWings } from './rendering/renderBobbieWings.js';
 import { getBestDistance, saveBestDistance } from './systems/storage.js';
 import { wingsAssetUrls } from './wingsAssets.js';
 
 const fixedStep = 1 / 120;
 
-export function SnoetjesWings({ audioSettings, onBackToModes, onMainMenu, playGameSound }) {
+export function BobbieWings({ audioSettings, onBackToModes, onMainMenu, playGameSound }) {
   const canvasRef = useRef(null);
   const stateRef = useRef(null);
   const inputRef = useRef({ pressed: false, justPressed: false, justReleased: false });
   const rafRef = useRef(0);
-  const [snapshot, setSnapshot] = useState(() => makeSnapshot(createSnoetjesWingsState(getBestDistance())));
+  const [snapshot, setSnapshot] = useState(() => makeSnapshot(createBobbieWingsState(getBestDistance())));
   const [paused, setPaused] = useState(false);
   const [runKey, setRunKey] = useState(0);
-  const lastPauseTouchRef = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    const state = createSnoetjesWingsState(getBestDistance());
+    const state = createBobbieWingsState(getBestDistance());
     let accumulator = 0;
     let previousTime = performance.now();
     let snapshotTimer = 0;
@@ -57,12 +56,12 @@ export function SnoetjesWings({ audioSettings, onBackToModes, onMainMenu, playGa
       if (!state.paused && state.status === 'playing') {
         accumulator += dt;
         while (accumulator >= fixedStep) {
-          updateSnoetjesWings(state, inputRef.current, fixedStep, playCue);
+          updateBobbieWings(state, inputRef.current, fixedStep, playCue);
           accumulator -= fixedStep;
         }
       }
 
-      drawSnoetjesWings(context, state);
+      drawBobbieWings(context, state);
       snapshotTimer += dt;
       if (snapshotTimer > 0.12 || state.status !== lastStatus) {
         snapshotTimer = 0;
@@ -106,35 +105,14 @@ export function SnoetjesWings({ audioSettings, onBackToModes, onMainMenu, playGa
     setRunKey((key) => key + 1);
   }
 
-  function handlePausePointerUp(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    lastPauseTouchRef.current = performance.now();
-    handlePause();
-  }
-
-  function handlePauseClick(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    if (performance.now() - lastPauseTouchRef.current < 350) {
-      return;
-    }
-    handlePause();
-  }
-
   return (
     <main className={`wings-shell ${snapshot.shake ? 'screen-shake' : ''}`}>
       <canvas
         ref={canvasRef}
         className="wings-canvas"
-        aria-label="Snoetjes Wings speelveld"
+        aria-label="Bobbie Wings speelveld"
       />
-      <GameHud
-        snapshot={snapshot}
-        paused={paused}
-        onPauseClick={handlePauseClick}
-        onPausePointerUp={handlePausePointerUp}
-      />
+      <GameHud snapshot={snapshot} paused={paused} onPause={handlePause} />
       {snapshot.status === 'game-over' && (
         <GameOverOverlay
           snapshot={snapshot}
@@ -158,7 +136,7 @@ export function SnoetjesWings({ audioSettings, onBackToModes, onMainMenu, playGa
   );
 }
 
-function GameHud({ snapshot, paused, onPauseClick, onPausePointerUp }) {
+function GameHud({ snapshot, paused, onPause }) {
   return (
     <div className="game-hud">
       <div className="wings-hud-stats" style={{ '--wings-bone-icon': `url(${wingsAssetUrls.goldBone})` }}>
@@ -170,13 +148,11 @@ function GameHud({ snapshot, paused, onPauseClick, onPausePointerUp }) {
       <button
         className="pause-button"
         type="button"
-        onPointerDown={(event) => event.stopPropagation()}
-        onPointerUp={onPausePointerUp}
-        onClick={onPauseClick}
+        onClick={onPause}
         aria-label={paused ? 'Resume game' : 'Pause game'}
         title={paused ? 'Resume game' : 'Pause game'}
       >
-        <span aria-hidden="true">{paused ? '>' : '||'}</span>
+        <span aria-hidden="true">{paused ? '▶' : 'Ⅱ'}</span>
       </button>
     </div>
   );
@@ -194,7 +170,7 @@ function HudMetric({ label, value, bone = false }) {
 function GameOverOverlay({ snapshot, onTryAgain, onBackToModes, onMainMenu }) {
   return (
     <div className="game-over-panel menu-enter">
-      <p className="game-over-kicker">Snoetjes Wings</p>
+      <p className="game-over-kicker">Bobbie Wings</p>
       <h1>Run Complete</h1>
       <dl>
         <div>

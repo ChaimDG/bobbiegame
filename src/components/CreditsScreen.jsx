@@ -1,17 +1,17 @@
 import { GameButton } from './GameButton.jsx';
-import snoetjesDogUrl from '../assets/snoetjes-dog.png';
+import bobbieDogUrl from '../assets/bobbie-dog.png';
 
 export function CreditsScreen({ onBackToMenu, onHoverButton }) {
   return (
     <div className="menu-content credits-content menu-enter" aria-labelledby="credits-title">
-      <div className="credits-snoetjes-stage" aria-hidden="true">
-        <span className="credits-snoetjes-glow" />
-        <img src={snoetjesDogUrl} className="credits-snoetjes" alt="" />
+      <div className="credits-bobbie-stage" aria-hidden="true">
+        <span className="credits-bobbie-glow" />
+        <img src={bobbieDogUrl} className="credits-bobbie" alt="" />
         <span className="credits-bone-mark credits-bone-mark-one" />
         <span className="credits-bone-mark credits-bone-mark-two" />
       </div>
       <header className="credits-heading">
-        <span>Snoetjes Game</span>
+        <span>Bobbie Game</span>
         <h1 className="panel-title" id="credits-title">Credits</h1>
       </header>
       <section className="credits-card" aria-label="Game credits">

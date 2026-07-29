@@ -1,4 +1,4 @@
-name: Deploy Snoetjes Game
+name: Deploy Bobbie Game
 
 on:
   push:

@@ -9,7 +9,7 @@ export function SettingsScreen({
   return (
     <div className="menu-content settings-content settings-content-premium menu-enter" aria-labelledby="settings-title">
       <header className="settings-heading">
-        <span>Snoetjes Game</span>
+        <span>Bobbie Game</span>
         <h1 className="panel-title" id="settings-title">Options</h1>
       </header>
       <section className="settings-card" aria-label="Audio settings">

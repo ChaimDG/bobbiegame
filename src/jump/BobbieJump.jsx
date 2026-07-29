@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { GameButton } from '../components/GameButton.jsx';
 import { createJumpState, getJumpBest, resizeJumpState, updateJump } from './engine.js';
-import { drawSnoetjesJump } from './render.js';
+import { drawBobbieJump } from './render.js';
 import { jumpAssetUrls } from './assets.js';
 
 const fixedStep = 1 / 120;
 
-export function SnoetjesJump({ onBackToModes, onMainMenu }) {
+export function BobbieJump({ onBackToModes, onMainMenu }) {
   const canvasRef = useRef(null);
   const stateRef = useRef(null);
   const inputRef = useRef({ left: false, right: false });
@@ -49,7 +49,7 @@ export function SnoetjesJump({ onBackToModes, onMainMenu }) {
           accumulator -= fixedStep;
         }
       }
-      drawSnoetjesJump(context, state);
+      drawBobbieJump(context, state);
       snapshotTimer += dt;
       if (snapshotTimer > 0.1 || state.status !== lastStatus) {
         snapshotTimer = 0;
@@ -142,7 +142,7 @@ export function SnoetjesJump({ onBackToModes, onMainMenu }) {
       <canvas
         ref={canvasRef}
         className="jump-canvas"
-        aria-label="Snoetjes Jump speelveld"
+        aria-label="Bobbie Jump speelveld"
         onPointerDown={handleCanvasPointerDown}
         onPointerUp={clearControls}
         onPointerCancel={clearControls}
@@ -152,25 +152,25 @@ export function SnoetjesJump({ onBackToModes, onMainMenu }) {
         <button className="jump-back-button" type="button" onClick={onBackToModes}>Modes</button>
         <div className="jump-title-lockup">
           <span>Sky playground</span>
-          <strong>Snoetjes Jump</strong>
+          <strong>Bobbie Jump</strong>
         </div>
         <button className="jump-pause-button" type="button" onClick={handlePause} aria-label={paused ? 'Resume game' : 'Pause game'}>
           {paused ? 'Play' : 'Pause'}
         </button>
       </header>
-      <section className="jump-stats" aria-label="Snoetjes Jump score">
+      <section className="jump-stats" aria-label="Bobbie Jump score">
         <JumpMetric label="Height" value={`${Math.floor(snapshot.height)} m`} />
         <JumpMetric label="Bones" value={snapshot.bones} bone />
         <JumpMetric label="Best" value={`${Math.floor(snapshot.bestHeight)} m`} />
       </section>
       <div className="jump-tip">Auto-bounce. Hold left or right to steer.</div>
-      <div className="jump-controls" aria-label="Steer Snoetjes">
+      <div className="jump-controls" aria-label="Steer Bobbie">
         <ControlButton direction="left" active={controls.left} onDirection={setDirection}>Left</ControlButton>
         <ControlButton direction="right" active={controls.right} onDirection={setDirection}>Right</ControlButton>
       </div>
       {paused && snapshot.status === 'playing' && (
         <div className="jump-overlay jump-overlay-pause menu-enter">
-          <p>Snoetjes Jump</p>
+          <p>Bobbie Jump</p>
           <h1>Take a breath</h1>
           <GameButton size="small" onClick={handlePause}>Resume</GameButton>
           <GameButton size="small" onClick={onBackToModes}>Game Modes</GameButton>

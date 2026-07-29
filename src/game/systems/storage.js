@@ -1,4 +1,4 @@
-const bestDistanceKey = 'snoetjes-wings-best-distance';
+const bestDistanceKey = 'bobbie-wings-best-distance';
 
 export function getBestDistance() {
   if (typeof window === 'undefined') {

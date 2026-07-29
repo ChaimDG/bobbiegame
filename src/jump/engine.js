@@ -1,4 +1,4 @@
-const storageKey = 'snoetjes-jump-progress';
+const storageKey = 'bobbie-jump-progress';
 
 const defaults = {
   width: 390,

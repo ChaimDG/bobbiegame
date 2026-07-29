@@ -1,9 +1,9 @@
 import skyParkUrl from '../assets/jump-art/sky-park.png';
-import snoetjesDogUrl from '../assets/snoetjes-dog.png';
+import bobbieDogUrl from '../assets/bobbie-dog.png';
 
 export const jumpAssetUrls = {
   skyPark: skyParkUrl,
-  snoetjes: snoetjesDogUrl,
+  bobbie: bobbieDogUrl,
 };
 
 function loadImage(source) {
@@ -16,5 +16,5 @@ function loadImage(source) {
 
 export const jumpSprites = {
   skyPark: loadImage(skyParkUrl),
-  snoetjes: loadImage(snoetjesDogUrl),
+  bobbie: loadImage(bobbieDogUrl),
 };

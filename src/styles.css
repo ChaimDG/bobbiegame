@@ -1,17 +1,11 @@
 :root {
-  --brand-blue: #281bb5;
-  --brand-blue-deep: #17106f;
-  --brand-blue-soft: #6475e7;
-  --brand-paper: #fbfaf6;
-  --brand-wood: #845f44;
-  --brand-wood-light: #d7b28a;
-  --brown: var(--brand-blue-deep);
-  --brown-dark: #0e0849;
-  --cream: var(--brand-paper);
-  --orange: #d79a63;
-  --yellow: #f1dfbd;
-  --sky: #bec8fa;
-  --green: #7890dc;
+  --brown: #4b2614;
+  --brown-dark: #2f170b;
+  --cream: #fff4cf;
+  --orange: #ff9b22;
+  --yellow: #ffd95a;
+  --sky: #9adbf7;
+  --green: #79c95b;
   color: var(--brown-dark);
   background: var(--sky);
   font-family:
@@ -215,7 +209,7 @@ select {
   transform: rotate(-6deg);
 }
 
-.menu-snoetjes {
+.menu-bobbie {
   position: absolute;
   z-index: 2;
   right: 11%;
@@ -224,7 +218,7 @@ select {
   filter: drop-shadow(0 10px 3px rgba(49, 34, 17, 0.32));
   transform: rotate(-5deg);
   transform-origin: bottom center;
-  animation: menuSnoetjesIdle 3.4s ease-in-out infinite;
+  animation: menuBobbieIdle 3.4s ease-in-out infinite;
 }
 
 .menu-gold-bone {
@@ -287,34 +281,6 @@ select {
   display: grid;
   gap: 4px;
   justify-items: center;
-}
-
-.official-menu-logo {
-  width: min(100%, 390px);
-  margin: 0;
-  line-height: 0;
-  filter: drop-shadow(0 6px 0 rgba(255, 255, 255, 0.74)) drop-shadow(0 13px 18px rgba(23, 16, 111, 0.32));
-  animation: titleBob 3.2s ease-in-out infinite;
-}
-
-.official-menu-logo img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.official-menu-subtitle {
-  margin-top: -9px;
-  color: #f7f6ff;
-  font-family: "Arial Rounded MT Bold", "Trebuchet MS", ui-rounded, system-ui, sans-serif;
-  font-size: clamp(2.15rem, 9vw, 3.45rem);
-  font-weight: 950;
-  line-height: 0.88;
-  text-shadow:
-    0 3px 0 var(--brand-blue),
-    0 7px 0 var(--brand-blue-deep),
-    0 12px 18px rgba(23, 16, 111, 0.26);
-  -webkit-text-stroke: 2px #fffdf9;
 }
 
 .menu-logo-kicker {
@@ -518,7 +484,7 @@ select {
   }
 }
 
-@keyframes menuSnoetjesIdle {
+@keyframes menuBobbieIdle {
   0%,
   100% {
     transform: translateY(0) rotate(-5deg);
@@ -774,7 +740,7 @@ select {
     linear-gradient(145deg, #ffbd78, #ec7450);
 }
 
-.credits-snoetjes-stage {
+.credits-bobbie-stage {
   position: absolute;
   z-index: 1;
   right: -31%;
@@ -784,7 +750,7 @@ select {
   pointer-events: none;
 }
 
-.credits-snoetjes-glow {
+.credits-bobbie-glow {
   position: absolute;
   right: 11%;
   bottom: 13%;
@@ -795,7 +761,7 @@ select {
   animation: menuGlow 3.6s ease-in-out infinite;
 }
 
-.credits-snoetjes {
+.credits-bobbie {
   position: absolute;
   right: 10%;
   bottom: -2%;
@@ -803,7 +769,7 @@ select {
   filter: drop-shadow(0 10px 3px rgba(50, 30, 15, 0.34));
   transform: rotate(-5deg);
   transform-origin: bottom center;
-  animation: menuSnoetjesIdle 3.4s ease-in-out infinite;
+  animation: menuBobbieIdle 3.4s ease-in-out infinite;
 }
 
 .credits-bone-mark {
@@ -1097,7 +1063,7 @@ select {
   pointer-events: none;
 }
 
-.mode-wings-snoetjes {
+.mode-wings-bobbie {
   position: absolute;
   z-index: 2;
   right: 7%;
@@ -2490,7 +2456,7 @@ select {
   text-align: center;
 }
 
-/* Snoetjes Defense is a denser game surface: the playfield remains the focus. */
+/* Bobbie Defense is a denser game surface: the playfield remains the focus. */
 .defense-shell {
   --defense-ink: #4b2a18;
   --defense-deep: #352014;
@@ -3167,7 +3133,7 @@ select {
   }
 }
 
-/* Snoetjes Match artwork pass: real game art replaces the earlier CSS-only pieces. */
+/* Bobbie Match artwork pass: real game art replaces the earlier CSS-only pieces. */
 .match-shell {
   isolation: isolate;
   background-color: #8fd3ec;
@@ -4059,195 +4025,7 @@ select {
   }
 }
 
-/* Snoetjes rebrand: indigo sign-paint, paper-white surfaces and warm wood details. */
-.game-shell-menu {
-  background-color: #d9ddff;
-  background-image:
-    linear-gradient(180deg, rgba(31, 22, 132, 0.28), rgba(255, 255, 255, 0.06) 42%, rgba(23, 16, 111, 0.34)),
-    var(--menu-valley);
-}
-
-.game-shell-menu::before {
-  background: linear-gradient(180deg, transparent, rgba(20, 12, 95, 0.62));
-}
-
-.game-shell-menu .sky-layer-back,
-.game-shell-menu .sky-layer-front {
-  opacity: 0.16;
-}
-
-.menu-logo-kicker,
-.mode-select-kicker,
-.mode-card-category,
-.settings-heading > span,
-.credits-heading > span {
-  color: #f7f6ff;
-  text-shadow: 0 2px 0 var(--brand-blue-deep);
-}
-
-.game-logo,
-.panel-title {
-  color: var(--brand-blue);
-  font-family: "Arial Rounded MT Bold", "Trebuchet MS", ui-rounded, system-ui, sans-serif;
-  text-shadow:
-    0 3px 0 rgba(255, 255, 255, 0.92),
-    0 7px 0 var(--brand-wood),
-    0 14px 18px rgba(23, 16, 111, 0.26);
-  -webkit-text-stroke-color: #fffdf9;
-}
-
-.game-logo span:first-child,
-.game-logo span:last-child {
-  color: var(--brand-blue);
-  filter: none;
-}
-
-.menu-content-premium .game-button,
-.game-button,
-.back-button,
-.pause-button {
-  border-color: var(--brand-blue-deep);
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.58), transparent 41%),
-    linear-gradient(145deg, #5b67e4, #281bb5 58%, #191078);
-  box-shadow:
-    inset 0 4px 0 rgba(255, 255, 255, 0.58),
-    inset 0 -7px 0 rgba(13, 8, 72, 0.29),
-    0 7px 0 #10094d,
-    0 15px 21px rgba(23, 16, 111, 0.3);
-}
-
-.menu-content-premium .game-button-tone-options,
-.settings-content-premium > .game-button {
-  color: var(--brand-blue-deep);
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.78), transparent 44%),
-    linear-gradient(145deg, #ffffff, #e0e3ff 56%, #b6c1fa);
-  box-shadow:
-    inset 0 4px 0 rgba(255, 255, 255, 0.76),
-    inset 0 -7px 0 rgba(41, 41, 126, 0.16),
-    0 7px 0 #10094d,
-    0 15px 21px rgba(23, 16, 111, 0.27);
-}
-
-.menu-content-premium .game-button-tone-options span,
-.settings-content-premium > .game-button span {
-  color: var(--brand-blue);
-  text-shadow: 0 2px 0 #fffdf9, 1px 0 #fffdf9, -1px 0 #fffdf9, 0 4px 0 rgba(23, 16, 111, 0.22);
-}
-
-.menu-content-premium .game-button-tone-credits,
-.credits-content > .game-button {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.58), transparent 41%),
-    linear-gradient(145deg, #d9b288, #9a7053 59%, #6e4834);
-}
-
-.menu-character-grass,
-.mode-jump-platform {
-  border-color: var(--brand-blue-deep);
-  background: linear-gradient(180deg, #f7f4ec, #bec5f8 45%, #6574da);
-  box-shadow: inset 0 6px 0 rgba(255, 255, 255, 0.72), 0 5px 0 rgba(23, 16, 111, 0.25);
-}
-
-.mode-card,
-.settings-card,
-.credits-card {
-  border-color: var(--brand-blue-deep);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.78), transparent 42%),
-    linear-gradient(145deg, #fffefa, #edeefe 58%, #cbd1fa);
-  box-shadow:
-    inset 0 5px 0 rgba(255, 255, 255, 0.72),
-    inset 0 -8px 0 rgba(36, 28, 130, 0.12),
-    0 8px 0 #10094d,
-    0 18px 25px rgba(23, 16, 111, 0.24);
-}
-
-.mode-card h2,
-.mode-card p,
-.mode-card-category,
-.credits-message,
-.credits-card dd,
-.settings-content-premium .sound-toggle {
-  color: var(--brand-blue-deep);
-}
-
-.mode-card h2 {
-  color: var(--brand-blue);
-  text-shadow: 0 2px 0 #fffefa, 1px 0 #fffefa, -1px 0 #fffefa, 0 4px 0 rgba(23, 16, 111, 0.2);
-}
-
-.mode-illustration,
-.jump-metric,
-.match-stat,
-.defense-stat,
-.wings-hud-metric {
-  border-color: var(--brand-blue-deep);
-}
-
-.mode-select-paw,
-.credits-bone-mark {
-  border-color: var(--brand-blue-deep);
-  background: linear-gradient(145deg, #6977e6, #281bb5);
-  box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.56), 0 5px 0 #10094d, 0 9px 14px rgba(23, 16, 111, 0.2);
-}
-
-.game-shell-settings {
-  background-image:
-    linear-gradient(180deg, rgba(32, 24, 148, 0.25), transparent 42%, rgba(15, 10, 76, 0.36)),
-    var(--settings-garden);
-}
-
-.game-shell-credits {
-  background-image:
-    linear-gradient(180deg, rgba(32, 24, 148, 0.2), transparent 38%, rgba(15, 10, 76, 0.35)),
-    var(--credits-meadow);
-}
-
-.game-shell-settings::before,
-.game-shell-credits::before {
-  background: linear-gradient(180deg, transparent, rgba(15, 10, 76, 0.44));
-}
-
-.settings-content-premium .sound-toggle,
-.credits-card dl div {
-  border-color: rgba(23, 16, 111, 0.45);
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.75), transparent 44%),
-    linear-gradient(145deg, #ffffff, #e2e4ff);
-}
-
-.toggle-track {
-  border-color: var(--brand-blue-deep);
-  background: #b9c1f0;
-}
-
-.sound-toggle input:checked + .toggle-track {
-  background: linear-gradient(180deg, #6877e8, #281bb5);
-}
-
-.toggle-thumb {
-  border-color: var(--brand-blue-deep);
-}
-
-.match-header h1,
-.jump-title-lockup strong,
-.defense-result h1,
-.game-over-panel h1,
-.jump-overlay h1 {
-  color: #fffdf9;
-  text-shadow: 0 3px 0 var(--brand-blue), 0 7px 0 var(--brand-blue-deep), 0 12px 20px rgba(13, 8, 72, 0.3);
-  -webkit-text-stroke-color: #fffdf9;
-}
-
-.defense-hud,
-.jump-hud,
-.game-hud {
-  --brand-hud: var(--brand-blue);
-}
-
-/* Snoetjes Jump: vertical auto-bounce platform game. */
+/* Bobbie Jump: vertical auto-bounce platform game. */
 .jump-shell {
   position: relative;
   isolation: isolate;
@@ -4566,7 +4344,7 @@ select {
   justify-self: center;
 }
 
-.mode-jump-snoetjes {
+.mode-jump-bobbie {
   position: absolute;
   z-index: 3;
   right: -8%;
@@ -4668,100 +4446,4 @@ select {
   .jump-overlay h1 {
     font-size: clamp(1.85rem, 10vw, 2.5rem);
   }
-}
-
-/* Keep the late-loaded Snoetjes Jump controls on the shared indigo theme. */
-.jump-back-button,
-.jump-pause-button,
-.jump-control {
-  border-color: var(--brand-blue-deep);
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.58), transparent 40%),
-    linear-gradient(145deg, #6575e9, #281bb5 58%, #17106f);
-  box-shadow: inset 0 -5px 0 rgba(13, 8, 72, 0.26), 0 5px 0 #10094d, 0 9px 14px rgba(23, 16, 111, 0.23);
-}
-
-.jump-control:last-child {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.72), transparent 40%),
-    linear-gradient(145deg, #ffffff, #d9ddff 58%, #a9b5f4);
-  color: var(--brand-blue-deep);
-  text-shadow: 0 1px 0 #fff;
-}
-
-.jump-metric,
-.jump-overlay,
-.jump-result,
-.mode-jump-platform,
-.jump-shell > .game-over-panel {
-  border-color: var(--brand-blue-deep);
-}
-
-.jump-metric {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.76), transparent 42%),
-    linear-gradient(145deg, #fffefa, #e2e4ff);
-  box-shadow: inset 0 -4px 0 rgba(36, 28, 130, 0.13), 0 4px 0 #10094d, 0 7px 12px rgba(23, 16, 111, 0.16);
-}
-
-.jump-metric span,
-.jump-metric strong,
-.jump-result dt,
-.jump-result dd {
-  color: var(--brand-blue-deep);
-  text-shadow: none;
-}
-
-.jump-overlay,
-.jump-result {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.82), transparent 36%),
-    linear-gradient(145deg, #fffefa, #d9defd);
-  box-shadow: inset 0 -8px 0 rgba(36, 28, 130, 0.14), 0 10px 0 #10094d, 0 25px 50px rgba(23, 16, 111, 0.34);
-}
-
-.jump-overlay h1 {
-  color: var(--brand-blue);
-  text-shadow: 0 3px 0 #fff, 0 7px 0 var(--brand-wood);
-  -webkit-text-stroke-color: #fffdf9;
-}
-
-/* Keep the full mobile game surfaces and their controls reliably centered. */
-@media (max-width: 560px) {
-  .wings-shell,
-  .defense-shell {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .match-shell {
-    align-items: center;
-    justify-items: center;
-  }
-
-  .match-game,
-  .defense-hud,
-  .defense-canvas,
-  .defense-mission,
-  .tower-bar {
-    justify-self: center;
-  }
-
-  .game-hud {
-    pointer-events: none;
-  }
-
-  .game-hud .pause-button {
-    position: relative;
-    z-index: 7;
-    pointer-events: auto;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-  }
-}
-
-.mode-jump-platform {
-  border-color: var(--brand-blue-deep);
-  background: linear-gradient(#fffefa, #c6cdf9 46%, #6474dc);
-  box-shadow: inset 0 4px 0 rgba(255,255,255,0.76), 0 5px 0 rgba(23,16,111,0.28);
 }
